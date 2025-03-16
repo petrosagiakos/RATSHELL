@@ -12,7 +12,7 @@ class Server:
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         
         self.s.bind(('', PORT))         
         self.s.listen(5)     
-        self.clients=[]
+        self.clients = {}
         self.cnt=0
         self.thread_accept=True
         
@@ -21,18 +21,19 @@ class Server:
             try:
                 self.s.settimeout(1)  
                 c, addr = self.s.accept()  
+                det=c.recv(1024).decode()
+                det=det.split(" ")
+                self.client_id += 1
+                client = clientEntry.clentry((c, addr), det[0], det[1], det[2])
+                self.clients[self.client_id] = client
             except socket.timeout:
                 continue 
-            det=c.recv(1024).decode()
-            det=det.split(" ")
-            client=clientEntry.clentry((c,addr),det[0],det[1],det[2])
-            if client not in self.clients:
-                self.cnt+=1
-                self.client_id=self.cnt
-               
-                self.clients.append(client)
+           
 
-            
+    def shutdown(self):
+        for cl in self.clients:
+            cl.fd.close()
+            self.clients.remove(cl)
     def list_clients(self):
         for i in self.clients:
             i.entry_print()
@@ -58,7 +59,7 @@ def main():
             break
             
         elif server_cm[0]=="CLIENT" and len(server_cm)==2:
-            try:
+            if 1==1:
                 cl=server.clients[int(server_cm[1])-1]
                 while True:
                     cm=input(str(cl.name)+"@"+str(cl.user)+"_$>")
@@ -75,8 +76,7 @@ def main():
                     res=cl.fd.recv(8192).decode()
                     print(res)
 
-
-            except:
+            else:
                 print("client not exists")
         else:
             print("unknown command type help for help")

