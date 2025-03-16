@@ -39,6 +39,9 @@ class Client:
                 
                 self.s.close()
                 break
+            else:
+                res="unknown command"
+                self.s.send(res.encode())
         
 
 client = Client()
