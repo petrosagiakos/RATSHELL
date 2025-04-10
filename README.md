@@ -11,24 +11,31 @@ This tool is intended only for legal and ethical use. Always obtain proper autho
 - Windows or Linux machine
 
 ## Example of Use
-Clone this repository
-```bash git clone https://github.com/petrosagiakos/RATSHELL``` 
+### 1. Clone this repository
+```git clone https://github.com/petrosagiakos/RATSHELL``` 
 
-Open a terminal and start the Rat server
+### 2. Start the Rat server
 
 Windows:
-```bash python RatServer.py```
+```python RatServer.py```
 
 Linux:
-```bash python3 RatServer.py``` 
-
+```python3 RatServer.py``` 
+### 3. Start the Rat server
 On an other computer or in an other terminal run:
 
 Windows:
-```bash python RatClient.py```
+```python RatClient.py```
 
 Linux:
-```bash python3 RatClient.py```
+```python3 RatClient.py```
 
 remember to change the ip in the client IP variable to the ip of the attacker (the machine the server is running on)
+
+### 4. Connect to Client
+
+In the Rat server type ```LC``` to list available clients.
+then type ```CLIENT [n]``` where n is the id of the client.
+Now you have a shell connection with your client. Type ```help``` to list available commands in client side. 
+
 
