@@ -11,13 +11,13 @@ This tool is intended only for legal and ethical use. Always obtain proper autho
 - Windows or Linux machine
 
 ## Example of Use
-Clone this repository
-```git clone https://github.com/petrosagiakos/RATSHELL```
+- ** Clone this repository
+```git clone https://github.com/petrosagiakos/RATSHELL``` **
 
-Open a terminal and start the Rat server
+- ** Open a terminal and start the Rat server
 
 Windows:
 ```python RatServer.py```
 
 Linux:
-```python3 RatServer.py```
+```python3 RatServer.py``` **
