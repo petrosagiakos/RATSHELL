@@ -55,8 +55,10 @@ def help():
 
     4. execute <command> - Execute a system command.
         - <command>: The command to execute (e.g., 'execute Linux ls -l').
-
-    5. help - Display this help message with a list of available commands.
+        
+    5. download <file> - Downloads the selected file from the victim.
+    
+    6. help - Display this help message with a list of available commands.
     """)
 def download(s,file,chunk_size):
     try:
